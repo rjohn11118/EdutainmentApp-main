@@ -84,10 +84,12 @@ struct ContentView: View {
     }
     
     func guess(){
+        //if there arent any questions left, tell em
         if questionNumber >= questions.count {
             message = "aint nothin left"
         } else {
             let currentQuestion = questions[questionNumber]
+            //if choice = answer, good, otherwise bade
             if number == currentQuestion.answer {
                 message = "correct nice"
             } else {
@@ -96,7 +98,7 @@ struct ContentView: View {
         }
 
     }
-
+//go to next question, otherwise end game and let them start again
     func nextQuestion(){
         if questionNumber + 1 < questions.count {
             questionNumber += 1
@@ -109,7 +111,7 @@ struct ContentView: View {
         
     }
     
-
+//adds questions based on multiple and i, appends to questions with an answer
     func startGame(){
         questions = []
             for i in 1...10 {
@@ -117,7 +119,6 @@ struct ContentView: View {
                 let answerValuea = multiple * i
                 questions.append(Question(question: questionTexta, answer: answerValuea))
             }
-            
             questionNumber = 0
             if !questions.isEmpty {
                 message = questions[questionNumber].question
